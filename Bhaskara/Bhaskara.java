@@ -1,11 +1,11 @@
-package Tarefa4;
-import javax.swing.JOptionPane;
+package Bhaskara;
+
 import java.util.Scanner;
 /**
  *
  * @author daian
  */
-public class Tarefa4 {
+public class Bhaskara {
   public String alerta = "Clique em 'OK' para calcular Equação 2º grau, sendo: ax²+bx+c=0";  
   public double a;
   public double b;
@@ -15,26 +15,34 @@ public class Tarefa4 {
   public double x2;
   public double raiz;
   public double a2;
-  
+    
+public void leitura (Scanner leitor) 
+{
+    
+    System.out.println("Digite os lados de a, b e c ");
+    a = leitor.nextDouble ();
+    b = leitor.nextDouble ();
+    c = leitor.nextDouble ();
+    
+    
+}
 
-public void leituraequacao (JOptionPane leitor) {
-JOptionPane.showMessageDialog(null, alerta, "Cálculo - Equação 2º Grau", JOptionPane.INFORMATION_MESSAGE);
-a = Double.parseDouble(JOptionPane.showInputDialog(null,"Digite o valor de a ","Primeiro Valor", JOptionPane.QUESTION_MESSAGE));
-b = Double.parseDouble(JOptionPane.showInputDialog(null,"Digite o valor de b ","Segundo Valor", JOptionPane.QUESTION_MESSAGE));
-c = Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor de c","Terceiro Valor",JOptionPane.QUESTION_MESSAGE));
+public void calcular () 
+{
 
-}  
-public void calculoequacacao (){
-
-//delta = ((b*b)-(4*a*c));
 delta = ((Math.pow(b,2)) - (4 * a * c));
 raiz =  (Math.sqrt(delta));
 a2 = 2*a;
 x1 = (- b + raiz)/a2;
 x2 = (- b - raiz)/a2;
+
 }
-public void imprimirequacacao () {
-    String msg;
+
+
+public void exibir () 
+{
+    
+   String msg;
     if (a !=  0 && delta > 0) {
        msg = "O delta da equacão de 2º grau é " + String.format("= %.2f", delta)+ "\n" + "A raiz de delta é "
    + String.format("= %.2f", raiz) + " e as duas raízes encontradas na equação 2º grau é " + "x1  "
@@ -53,43 +61,44 @@ public void imprimirequacacao () {
     } else {
 
 msg = "Sem solução no conjunto dos números reais!";
-} JOptionPane.showMessageDialog(null, msg, "Equação de 2º grau", JOptionPane.INFORMATION_MESSAGE); 
-     
- 
-} 
 
+}   System.out.println(msg);
+
+}
+    
     public static void main(String[] args) {
-        Tarefa4 obj3 = new Tarefa4 ();
-        obj3.leituraequacao(leitor);
-        obj3.calculoequacacao();
-        obj3.imprimirequacacao();
+        
+        Scanner leitor = new Scanner (System.in);
+        Bhaskara obj4 = new Bhaskara ();
         
         
-     int tecla = 0;
+        int tecla = 0;
         String menu = "\n***MENU***\n1 ler\n2 Calcular\n3 Exibir\n4 Sair\nItem:";
         
-    
-      do
+   do
   
    {
        System.out.println(menu);
-       tecla = leitor.parseDouble;
+       tecla = leitor.nextInt ();
        switch (tecla) 
        {
            
-        case 1: obj3.leituraequacao ();
+        case 1: obj4.leitura (leitor) ;
                         break;
                         
-     
-        case 3: obj3.calculoequacacao();
+        case 2: obj4.calcular();
                         break;
                         
-        case 4: obj3.imprimirequacacao();
+        case 3: obj4.exibir ();
                         break;
                                 
-        case 5: System.exit(0); 
+        case 4: System.exit(0); 
                         break;   
           
-       }   
-    }
+       }
+       
+    } while ( tecla != 4 );
+   
+  }
+   
 }
